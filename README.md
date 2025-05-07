@@ -17,15 +17,9 @@ A full-stack task management application built with Next.js, MongoDB, and NextAu
 - **Frontend**: Next.js, Tailwind CSS, shadcn/ui
 - **Backend**: Next.js API Routes
 - **Database**: MongoDB
-- **Authentication**: NextAuth.js
-- **Drag and Drop**: @hello-pangea/dnd
+- **Authentication**: NextAuth
 
 ## Setup Instructions
-
-### Prerequisites
-
-- Node.js 18+ installed
-- MongoDB instance (local or Atlas)
 
 ### Environment Variables
 
@@ -59,3 +53,32 @@ npm run dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Database Schema
+
+### Users Collection
+
+```
+{
+  _id: ObjectId,
+  name: String,
+  email: String,
+  password: String (hashed),
+  createdAt: Date
+}
+```
+
+### Tasks Collection
+
+```
+{
+  _id: ObjectId,
+  title: String,
+  description: String,
+  status: String (enum: "todo", "in-progress", "completed"),
+  priority: String (enum: "low", "medium", "high"),
+  userId: String,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
