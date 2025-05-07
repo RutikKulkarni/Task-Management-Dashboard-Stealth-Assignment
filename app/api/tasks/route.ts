@@ -2,23 +2,27 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/mongodb";
+import { TaskStatus } from "@/lib/types";
+
+interface QueryFilter {
+  userId: string;
+  status?: TaskStatus;
+}
 
 export async function GET(request: Request) {
   try {
     const session = await getServerSession(authOptions);
-
-    if (!session) {
+    if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const { searchParams } = new URL(request.url);
     const status = searchParams.get("status");
-
     const { db } = await connectToDatabase();
-    const query: any = { userId: session.user.id };
 
+    const query: QueryFilter = { userId: session.user.id };
     if (status && status !== "all") {
-      query.status = status;
+      query.status = status as TaskStatus;
     }
 
     const tasks = await db
@@ -26,7 +30,6 @@ export async function GET(request: Request) {
       .find(query)
       .sort({ createdAt: -1 })
       .toArray();
-
     return NextResponse.json(tasks);
   } catch (error) {
     console.error("Error fetching tasks:", error);
@@ -40,8 +43,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
-
-    if (!session) {
+    if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -51,7 +53,6 @@ export async function POST(request: Request) {
       priority,
       status = "todo",
     } = await request.json();
-
     if (!title) {
       return NextResponse.json({ error: "Title is required" }, { status: 400 });
     }
@@ -65,8 +66,8 @@ export async function POST(request: Request) {
       userId: session.user.id,
       createdAt: new Date(),
     };
-    const result = await db.collection("tasks").insertOne(newTask);
 
+    const result = await db.collection("tasks").insertOne(newTask);
     return NextResponse.json(
       {
         ...newTask,
