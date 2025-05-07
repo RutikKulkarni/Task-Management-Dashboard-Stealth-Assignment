@@ -31,31 +31,31 @@ A full-stack task management application built with Next.js, MongoDB, and NextAu
 
 Create a `.env` file in the root directory with the following variables:
 
-\`\`\`
+```
 NEXTAUTH_SECRET=your_nextauth_secret
 MONGODB_URI=mongodb://localhost:27017/Task-Management-Dashboard-Stealth-Assignment
 MONGODB_DB=Task-Management-Dashboard-Stealth-Assignment
-\`\`\`
+```
 
 ### Installation
 
 1. Clone the repository:
 
-\`\`\`bash
+```
 git clone https://github.com/RutikKulkarni/Task-Management-Dashboard-Stealth-Assignment
 cd Task-Management-Dashboard-Stealth-Assignment
-\`\`\`
+```
 
 2. Install dependencies:
 
-\`\`\`bash
+```
 npm install
-\`\`\`
+```
 
 3. Run the development server:
 
-\`\`\`bash
+```
 npm run dev
-\`\`\`
+```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
