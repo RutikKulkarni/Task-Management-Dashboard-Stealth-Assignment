@@ -24,7 +24,7 @@ export default function DashboardHeader({ user }: DashboardHeaderProps) {
     <header className="border-b">
       <div className="container flex h-16 items-center justify-between py-4">
         <Link href="/dashboard" className="flex items-center">
-          <span className="font-bold text-xl">TaskFlow</span>
+          <span className="font-bold text-xl">Task Management Dashboard </span>
         </Link>
         <div className="flex items-center gap-4">
           <ModeToggle />
