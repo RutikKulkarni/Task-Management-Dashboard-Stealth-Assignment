@@ -26,7 +26,7 @@ A full-stack task management application built with Next.js, MongoDB, and NextAu
 Create a `.env` file in the root directory with the following variables:
 
 ```
-NEXTAUTH_SECRET=your_nextauth_secret
+AUTH_SECRET=auth_secret_key
 MONGODB_URI=mongodb://localhost:27017/Task-Management-Dashboard-Stealth-Assignment
 MONGODB_DB=Task-Management-Dashboard-Stealth-Assignment
 ```

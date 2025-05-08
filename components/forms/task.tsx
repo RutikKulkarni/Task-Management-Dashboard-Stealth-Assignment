@@ -62,6 +62,13 @@ export default function TaskForm({ task, onSubmit, onCancel }: TaskFormProps) {
         });
       } else {
         // await onSubmit(values);
+        const newTask: Omit<Task, "_id"> = {
+          ...values,
+          userId: "",
+          createdAt: new Date().toISOString(),
+          description: values.description || "",
+        };
+        await onSubmit(newTask);
       }
     } finally {
       setIsLoading(false);
