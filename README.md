@@ -2,6 +2,8 @@
 
 A full-stack task management application built with Next.js, MongoDB, and NextAuth.js. This application allows users to manage tasks with drag-and-drop functionality, filtering, and search capabilities.
 
+- Live URL: https://task-management-dashboard-stealth-assignment.vercel.app
+
 ## Features
 
 - User authentication (register/login)
